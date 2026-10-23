@@ -22,7 +22,7 @@ import android.webkit.WebResourceResponse
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.api.ApiConfig
 import com.github.tvbox.osc.base.App
 import com.github.tvbox.osc.bean.ParseBean

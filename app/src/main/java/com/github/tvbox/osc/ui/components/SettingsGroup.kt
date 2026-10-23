@@ -62,7 +62,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.ui.theme.cardContainer
 
 private val RowLeadingIconSize = 24.dp

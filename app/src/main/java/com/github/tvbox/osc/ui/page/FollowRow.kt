@@ -43,7 +43,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.bean.VodInfo
 import com.github.tvbox.osc.data.EpisodeTotals
 import com.github.tvbox.osc.data.FollowDays

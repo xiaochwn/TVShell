@@ -37,7 +37,7 @@
     </queries>
 
     <application
-        android:name=".base.App"
+        android:name="com.github.tvbox.osc.base.App"
         android:allowBackup="true"
         android:configChanges="orientation|keyboardHidden|screenSize"
         android:hardwareAccelerated="true"
@@ -57,7 +57,7 @@
             android:theme="@android:style/Theme.Material.Light.NoActionBar" />
 
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name="com.github.tvbox.osc.ui.activity.MainActivity"
             android:exported="true"
             android:theme="@style/AppTheme.Splash"
             android:windowSoftInputMode="adjustResize">
@@ -69,25 +69,25 @@
         </activity>
 
         <activity
-            android:name=".ui.activity.LivePlayActivity"
+            android:name="com.github.tvbox.osc.ui.activity.LivePlayActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|screenLayout|smallestScreenSize" />
         <activity
-            android:name=".ui.activity.DetailActivity"
+            android:name="com.github.tvbox.osc.ui.activity.DetailActivity"
             android:launchMode="singleTop"
             android:configChanges="orientation|screenSize" />
         <activity
-            android:name=".ui.activity.MusicPlayerActivity"
+            android:name="com.github.tvbox.osc.ui.activity.MusicPlayerActivity"
             android:configChanges="orientation|screenSize" />
         <activity
-            android:name=".ui.activity.SearchActivity"
+            android:name="com.github.tvbox.osc.ui.activity.SearchActivity"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name=".ui.activity.PartitionListActivity"
+            android:name="com.github.tvbox.osc.ui.activity.PartitionListActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".ui.activity.ThemeSettingsActivity" />
+            android:name="com.github.tvbox.osc.ui.activity.ThemeSettingsActivity" />
         <activity
-            android:name=".ui.activity.ConfigManageActivity"
+            android:name="com.github.tvbox.osc.ui.activity.ConfigManageActivity"
             android:exported="true"
             android:launchMode="singleTop">
             <intent-filter>
@@ -101,23 +101,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.PlaySettingsActivity" />
+            android:name="com.github.tvbox.osc.ui.activity.PlaySettingsActivity" />
         <activity
-            android:name=".ui.activity.PreferenceSettingsActivity" />
+            android:name="com.github.tvbox.osc.ui.activity.PreferenceSettingsActivity" />
 
         <service
-            android:name=".dlna.DLNACastService"
+            android:name="com.github.tvbox.osc.dlna.DLNACastService"
             android:exported="false" />
 
         <receiver
-            android:name=".receiver.SearchReceiver"
+            android:name="com.github.tvbox.osc.receiver.SearchReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.content.movie.search.Action" />
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".receiver.CustomWebReceiver"
+            android:name="com.github.tvbox.osc.receiver.CustomWebReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.content.movie.custom.web.Action" />
@@ -141,7 +141,7 @@
             android:name="design_height_in_dp"
             android:value="720" />
         <service
-            android:name=".player.PlaybackService"
+            android:name="com.github.tvbox.osc.player.PlaybackService"
             android:foregroundServiceType="mediaPlayback"
             android:exported="false" />
     </application>

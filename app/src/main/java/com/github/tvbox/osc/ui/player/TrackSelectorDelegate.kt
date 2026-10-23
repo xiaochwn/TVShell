@@ -2,7 +2,7 @@ package com.github.tvbox.osc.ui.player
 
 import android.content.Context
 import android.widget.Toast
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.player.MyVideoView
 import com.github.tvbox.osc.player.TrackInfoBean
 import com.github.tvbox.osc.player.state.PlayerUiState

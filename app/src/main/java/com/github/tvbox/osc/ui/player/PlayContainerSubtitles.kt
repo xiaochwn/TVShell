@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.media3.common.text.Cue
 import androidx.media3.ui.CaptionStyleCompat
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.data.AppGraph
 import com.github.tvbox.osc.player.ExoPlayer
 import com.github.tvbox.osc.player.KernelPlayer

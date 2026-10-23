@@ -47,7 +47,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.data.AppGraph
 import com.github.tvbox.osc.data.EpisodeTotals
 import com.github.tvbox.osc.data.PlaybackProgress

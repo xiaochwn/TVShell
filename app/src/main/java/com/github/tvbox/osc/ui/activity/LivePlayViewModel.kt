@@ -2,7 +2,7 @@ package com.github.tvbox.osc.ui.activity
 
 import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.api.ApiConfig
 import com.github.tvbox.osc.base.App
 import com.github.tvbox.osc.bean.Epginfo

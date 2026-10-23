@@ -6,7 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.webkit.WebView
 import androidx.appcompat.view.ContextThemeWrapper
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.player.host.EngineSurfaceRenderViewFactory
 import com.github.tvbox.osc.player.host.EngineTextureRenderViewFactory
 import com.github.tvbox.osc.player.state.PlayState

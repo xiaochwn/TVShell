@@ -13,7 +13,7 @@ import android.view.ViewGroup
 import android.webkit.WebView
 import android.widget.FrameLayout
 import android.widget.Toast
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.dlna.CastVideo
 import com.github.tvbox.osc.event.RefreshEvent
 import com.github.tvbox.osc.player.ExoPlayer

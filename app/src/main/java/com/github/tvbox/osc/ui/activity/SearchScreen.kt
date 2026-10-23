@@ -39,7 +39,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.bean.Movie
 import com.github.tvbox.osc.net.SearchSettings
 import com.github.tvbox.osc.ui.components.AppTopBarScaffold

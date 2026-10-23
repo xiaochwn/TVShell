@@ -20,7 +20,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.player.PlaybackService
 import com.github.tvbox.osc.player.PlayerHelper
 import com.github.tvbox.osc.player.effect.anime4k.Anime4kTier

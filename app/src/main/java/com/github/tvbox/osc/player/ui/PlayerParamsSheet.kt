@@ -28,7 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.player.state.ParamsChoice
 import com.github.tvbox.osc.player.state.ParamsSheetState
 import com.github.tvbox.osc.player.state.ParamsTab

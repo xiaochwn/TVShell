@@ -6,7 +6,7 @@ import android.text.TextUtils
 import android.util.Base64
 
 import com.github.catvod.crawler.Spider
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.base.App
 import com.github.tvbox.osc.bean.LiveChannelGroup
 import com.github.tvbox.osc.bean.LiveChannelItem

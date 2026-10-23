@@ -2,7 +2,7 @@ package com.github.tvbox.osc.ui.player
 
 import android.os.Looper
 import android.widget.Toast
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.player.danmu.DanmuLoadController
 import com.github.tvbox.osc.player.state.DanmuSearchSheetState
 import com.github.tvbox.osc.util.LOG

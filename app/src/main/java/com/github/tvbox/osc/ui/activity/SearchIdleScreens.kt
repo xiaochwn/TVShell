@@ -37,7 +37,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.ui.components.SettingsIconBadge
 import com.github.tvbox.osc.ui.components.clearFocusOnDrag
 import com.github.tvbox.osc.ui.page.ManageActionIcon

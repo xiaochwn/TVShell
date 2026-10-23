@@ -19,7 +19,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.ui.WindowSize
 import com.github.tvbox.osc.util.AppManager
 import com.github.tvbox.osc.util.HawkConfig

@@ -9,7 +9,7 @@ import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.github.avbox.osc.ComposeTestActivity
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.player.state.PlayerActions
 import com.github.tvbox.osc.player.state.PlayerUiState
 import com.github.tvbox.osc.testing.TestApplication

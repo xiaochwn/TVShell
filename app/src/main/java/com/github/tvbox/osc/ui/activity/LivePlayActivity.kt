@@ -20,7 +20,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.api.ApiConfig
 import com.github.tvbox.osc.base.App
 import com.github.tvbox.osc.base.BaseActivity

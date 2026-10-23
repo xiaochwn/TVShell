@@ -4,7 +4,7 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.player.state.CastSheetState
 
 enum class MusicPlayMode(@StringRes val labelRes: Int) {

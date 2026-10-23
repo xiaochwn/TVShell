@@ -3,7 +3,7 @@ package com.github.tvbox.osc.util
 import android.os.SystemClock
 import android.os.Trace
 
-import com.github.tvbox.osc.BuildConfig
+import com.tvshell.app.BuildConfig
 
 import java.util.concurrent.atomic.AtomicInteger
 

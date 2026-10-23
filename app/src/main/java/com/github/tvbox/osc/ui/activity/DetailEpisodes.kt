@@ -54,7 +54,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.bean.VodInfo
 import com.github.tvbox.osc.data.EpisodeMatcher
 import com.github.tvbox.osc.ui.components.AVBoxBottomSheet

@@ -2,7 +2,7 @@ package com.github.tvbox.osc.ui.page
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.api.ApiConfig
 import com.github.tvbox.osc.api.SortAdjuster
 import com.github.tvbox.osc.base.App

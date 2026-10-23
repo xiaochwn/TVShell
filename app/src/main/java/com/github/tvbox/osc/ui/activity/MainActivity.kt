@@ -5,7 +5,7 @@ import android.os.Build
 import com.github.tvbox.osc.ui.theme.enableTransparentEdgeToEdge
 import androidx.compose.ui.platform.ComposeView
 import androidx.core.view.WindowCompat
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.base.BaseActivity
 import com.github.tvbox.osc.player.PlaybackService
 import com.github.tvbox.osc.ui.page.MainScreen

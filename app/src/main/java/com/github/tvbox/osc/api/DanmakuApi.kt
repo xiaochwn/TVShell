@@ -8,7 +8,7 @@ import androidx.collection.ArrayMap
 
 import com.github.catvod.crawler.js.Trans
 import com.github.catvod.net.OkHttp
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.base.App
 import com.github.tvbox.osc.bean.DanmuSearchResult
 import com.github.tvbox.osc.bean.SourceBean

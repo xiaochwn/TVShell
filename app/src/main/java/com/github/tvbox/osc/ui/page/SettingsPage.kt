@@ -41,7 +41,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.io.FileUtils
 import com.github.tvbox.osc.net.OkGoHelper
 import com.github.tvbox.osc.player.effect.anime4k.Anime4kTier
@@ -424,7 +424,7 @@ private fun AboutSheet(versionName: String, onDismiss: () -> Unit) {
 
 private const val AboutSheetHeightFraction = 0.6f
 
-private const val GITHUB_REPO_URL = "https://github.com/XiaochangXu/AVBox"
+private const val GITHUB_REPO_URL = "https://github.com/xiaochwn/TVShell"
 
 private fun openExternalUrl(context: Context, url: String) {
     try {

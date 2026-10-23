@@ -73,7 +73,7 @@ import androidx.compose.ui.window.DialogWindowProvider
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.ui.theme.ContinuousPlayerPanel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

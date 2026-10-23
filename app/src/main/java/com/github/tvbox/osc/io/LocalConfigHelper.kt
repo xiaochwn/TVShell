@@ -14,7 +14,7 @@ import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.util.LOG
 import com.github.tvbox.osc.util.MD5
 import com.github.tvbox.osc.util.PermissionHelper

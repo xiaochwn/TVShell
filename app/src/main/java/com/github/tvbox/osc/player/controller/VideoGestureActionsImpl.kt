@@ -5,7 +5,7 @@ import android.content.Context
 import android.media.AudioManager
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.player.AppPlayerView
 import com.github.tvbox.osc.player.state.PlayState
 import com.github.tvbox.osc.player.ui.VideoGestureActions

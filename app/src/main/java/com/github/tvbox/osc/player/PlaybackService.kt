@@ -25,7 +25,7 @@ import coil3.SingletonImageLoader
 import coil3.request.ImageRequest
 import coil3.target.Target
 import coil3.toBitmap
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.data.PlaybackPorts
 import com.github.tvbox.osc.util.HawkConfig
 import com.github.tvbox.osc.util.KV

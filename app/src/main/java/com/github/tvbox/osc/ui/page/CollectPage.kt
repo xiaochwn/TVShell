@@ -48,7 +48,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.api.ApiConfig
 import com.github.tvbox.osc.data.AppGraph
 import com.github.tvbox.osc.data.CollectRepository

@@ -1,7 +1,7 @@
 package com.github.tvbox.osc.player
 
 import android.content.res.Configuration
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith

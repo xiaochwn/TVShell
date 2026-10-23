@@ -2,7 +2,7 @@ package com.github.tvbox.osc.ui.activity
 
 import android.graphics.Bitmap
 import android.os.Handler
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.bean.Epginfo
 import com.github.tvbox.osc.player.MyVideoView
 import com.github.tvbox.osc.player.PlaybackTimes

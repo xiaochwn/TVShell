@@ -1,6 +1,6 @@
 package com.github.tvbox.osc.ui.theme
 
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.materialkolor.PaletteStyle
 
 object ThemeSource {

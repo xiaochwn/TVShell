@@ -19,7 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModelProvider
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.base.BaseActivity
 import com.github.tvbox.osc.bean.VodInfo
 import com.github.tvbox.osc.ui.components.SheetHostScaffold

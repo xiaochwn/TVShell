@@ -2,7 +2,7 @@ package com.github.tvbox.osc.player.usecase
 
 import android.content.Context
 import android.widget.Toast
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.base.App
 import com.github.tvbox.osc.server.ControlManager
 import com.github.tvbox.osc.server.RemoteServer

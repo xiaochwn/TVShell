@@ -2,7 +2,7 @@ package com.github.tvbox.osc.ui.page
 
 import android.content.Context
 import android.widget.Toast
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.api.ApiConfig
 import com.github.tvbox.osc.bean.Movie
 import com.github.tvbox.osc.ui.activity.PartitionListActivity

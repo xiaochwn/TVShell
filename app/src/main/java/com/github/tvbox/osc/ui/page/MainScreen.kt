@@ -66,7 +66,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.compose.rememberLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.server.ControlManager
 import com.github.tvbox.osc.ui.activity.LivePlayActivity
 import com.github.tvbox.osc.ui.components.AVBoxAlertDialog

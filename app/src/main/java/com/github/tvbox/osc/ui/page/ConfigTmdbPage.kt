@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.ui.components.SettingsCard
 import com.github.tvbox.osc.ui.components.SettingsCardPosition
 import com.github.tvbox.osc.ui.components.SettingsGroup

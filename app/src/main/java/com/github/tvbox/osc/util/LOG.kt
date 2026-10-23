@@ -2,7 +2,7 @@ package com.github.tvbox.osc.util
 
 import android.util.Log
 
-import com.github.tvbox.osc.BuildConfig
+import com.tvshell.app.BuildConfig
 
 import java.io.File
 import java.io.FileWriter

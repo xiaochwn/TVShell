@@ -3,7 +3,7 @@ package com.github.tvbox.osc.player
 import android.app.Activity
 import android.content.Context
 
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.player.engine.SourcePolicy
 import com.github.tvbox.osc.player.host.EngineSurfaceRenderViewFactory
 import com.github.tvbox.osc.player.host.EngineTextureRenderViewFactory

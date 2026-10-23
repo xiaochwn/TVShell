@@ -36,7 +36,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.res.stringResource
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.bean.Subtitle
 import com.github.tvbox.osc.player.state.SubtitleSearchSheetState
 import com.github.tvbox.osc.player.state.SubtitleSheetState

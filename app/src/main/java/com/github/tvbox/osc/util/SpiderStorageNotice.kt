@@ -4,7 +4,7 @@ import android.app.Activity
 import android.os.SystemClock
 import android.widget.Toast
 
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 
 import java.lang.ref.WeakReference
 

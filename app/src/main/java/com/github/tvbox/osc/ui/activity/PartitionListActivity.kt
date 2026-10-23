@@ -48,7 +48,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.base.BaseActivity
 import com.github.tvbox.osc.ui.components.SheetHostScaffold
 import com.github.tvbox.osc.bean.Movie

@@ -28,7 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.api.DanmakuApi
 import com.github.tvbox.osc.bean.DanmuSearchResult
 import com.github.tvbox.osc.event.RefreshEvent

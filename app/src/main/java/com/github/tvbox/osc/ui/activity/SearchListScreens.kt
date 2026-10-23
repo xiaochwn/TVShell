@@ -33,7 +33,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.bean.Movie
 import com.github.tvbox.osc.ui.components.VodCard
 import com.github.tvbox.osc.ui.components.VodCardStyle

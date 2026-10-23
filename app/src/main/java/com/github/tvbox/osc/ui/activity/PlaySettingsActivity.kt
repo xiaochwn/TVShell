@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import com.github.tvbox.osc.ui.theme.enableTransparentEdgeToEdge
 import androidx.compose.ui.platform.ComposeView
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.base.BaseActivity
 import com.github.tvbox.osc.ui.page.PlaySettingsScreen
 import com.github.tvbox.osc.ui.theme.AVBoxTheme

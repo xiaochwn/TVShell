@@ -27,7 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 
 private val HeaderCardShape = RoundedCornerShape(32.dp)
 

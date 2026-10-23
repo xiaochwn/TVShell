@@ -36,7 +36,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.dlna.CastDevice
 import com.github.tvbox.osc.dlna.DLNACastManager
 import com.github.tvbox.osc.player.PlayerHelper

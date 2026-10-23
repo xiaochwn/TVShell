@@ -10,7 +10,7 @@ import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.compose.ui.platform.ComposeView
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.api.ApiConfig
 import com.github.tvbox.osc.base.BaseActivity
 import com.github.tvbox.osc.ui.components.SheetHostScaffold

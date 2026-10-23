@@ -80,7 +80,7 @@ import coil3.SingletonImageLoader
 import coil3.compose.AsyncImage
 import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.player.ui.PLAYER_PRESS_SCALE
 import com.github.tvbox.osc.player.ui.playerPressEffect
 import com.github.tvbox.osc.ui.components.HeroImageSizes

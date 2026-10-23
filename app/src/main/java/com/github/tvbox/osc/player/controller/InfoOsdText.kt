@@ -13,7 +13,7 @@ import android.webkit.WebView
 import androidx.media3.common.Format
 import androidx.media3.common.MimeTypes
 import androidx.media3.exoplayer.upstream.DefaultBandwidthMeter
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.player.AppPlayerView
 import com.github.tvbox.osc.player.ExoPlayer
 import com.github.tvbox.osc.player.PlayerDecodeKind

@@ -3,7 +3,7 @@ package com.github.tvbox.osc.player
 import android.net.Uri
 import android.text.TextUtils
 import androidx.media3.exoplayer.mediacodec.MediaCodecSelector
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.bean.SourceBean
 import com.github.tvbox.osc.bean.VodInfo
 import com.github.tvbox.osc.data.EpisodeMatcher

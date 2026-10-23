@@ -1,7 +1,7 @@
 package com.github.tvbox.osc.ui.player
 
 import android.text.TextUtils
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.api.ApiConfig
 import com.github.tvbox.osc.bean.ParseBean
 import com.github.tvbox.osc.data.WatchProgressStore

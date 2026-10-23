@@ -1,7 +1,7 @@
 package com.github.tvbox.osc.player.controller
 
 import android.os.SystemClock
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.player.PlayerHelper
 import com.github.tvbox.osc.player.VideoCodecInfo
 import com.github.tvbox.osc.player.effect.PictureEffects

@@ -2,7 +2,7 @@ package com.github.tvbox.osc.player
 
 import android.text.TextUtils
 import android.util.Base64
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.api.ApiConfig
 import com.github.tvbox.osc.api.DanmakuApi
 import com.github.tvbox.osc.io.FileUtils

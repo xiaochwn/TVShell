@@ -10,7 +10,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.ui.platform.ComposeView
 import androidx.lifecycle.ViewModelProvider
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.base.BaseActivity
 import com.github.tvbox.osc.io.cancelLocalConfig
 import com.github.tvbox.osc.io.handleLocalConfigResult

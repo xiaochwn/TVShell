@@ -4,7 +4,7 @@ import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.api.ApiConfig
 import com.github.tvbox.osc.bean.ParseBean
 import com.github.tvbox.osc.player.ExoPlayer

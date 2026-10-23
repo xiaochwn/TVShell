@@ -8,7 +8,7 @@ import android.os.StrictMode
 import android.os.SystemClock
 
 import com.github.catvod.crawler.JsLoader
-import com.github.tvbox.osc.BuildConfig
+import com.tvshell.app.BuildConfig
 import com.github.tvbox.osc.bean.VodInfo
 import com.github.tvbox.osc.data.AppDataManager
 import com.github.tvbox.osc.data.PlaybackPorts

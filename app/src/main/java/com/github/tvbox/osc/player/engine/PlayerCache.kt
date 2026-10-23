@@ -7,7 +7,7 @@ import androidx.media3.database.StandaloneDatabaseProvider
 import androidx.media3.datasource.cache.Cache
 import androidx.media3.datasource.cache.LeastRecentlyUsedCacheEvictor
 import androidx.media3.datasource.cache.SimpleCache
-import com.github.tvbox.osc.BuildConfig
+import com.tvshell.app.BuildConfig
 import com.github.tvbox.osc.util.LOG
 import java.io.File
 

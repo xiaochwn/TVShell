@@ -10,7 +10,7 @@ import android.os.IBinder
 import android.os.Looper
 
 import com.google.gson.Gson
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.base.App
 import com.github.tvbox.osc.util.LOG
 import com.github.tvbox.osc.util.LanguageManager

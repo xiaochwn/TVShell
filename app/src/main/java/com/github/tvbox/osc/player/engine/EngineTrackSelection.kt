@@ -8,7 +8,7 @@ import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.source.TrackGroupArray
 import androidx.media3.exoplayer.trackselection.DefaultTrackSelector
 import androidx.media3.exoplayer.trackselection.MappingTrackSelector
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.base.App
 import com.github.tvbox.osc.player.TrackInfo
 import com.github.tvbox.osc.player.TrackInfoBean

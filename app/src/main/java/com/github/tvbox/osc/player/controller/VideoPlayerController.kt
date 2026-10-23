@@ -14,7 +14,7 @@ import android.webkit.WebView
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.platform.ComposeView
 import androidx.media3.ui.SubtitleView
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.api.ApiConfig
 import com.github.tvbox.osc.bean.SourceBean
 import com.github.tvbox.osc.player.AppPlayerView

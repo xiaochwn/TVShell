@@ -79,7 +79,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.github.tvbox.osc.R
+import com.tvshell.app.R
 import com.github.tvbox.osc.bean.Movie
 import com.github.tvbox.osc.bean.MovieSort
 import com.github.tvbox.osc.net.SiteSearch

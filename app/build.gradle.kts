@@ -8,16 +8,16 @@ plugins {
 }
 
 android {
-    namespace = "com.github.tvbox.osc"
+    namespace = "com.tvshell.app"
     compileSdk = libs.versions.compileSdk.get().toInt()
     ndkVersion = libs.versions.ndk.get()
 
     defaultConfig {
-        applicationId = "com.github.avbox.osc"
+        applicationId = "com.tvshell.app"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = 33
-        versionName = "1.2.9"
+        versionCode = 1
+        versionName = "1.0.0"
         multiDexEnabled = true
         ndk {
             abiFilters += setOf("arm64-v8a")
@@ -105,7 +105,7 @@ ksp {
 androidComponents {
     onVariants { variant ->
         variant.outputs.forEach { output ->
-            output.outputFileName.set("AVBox_${variant.buildType}.apk")
+            output.outputFileName.set("TVShell_${variant.buildType}.apk")
         }
     }
 }
