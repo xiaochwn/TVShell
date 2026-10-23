@@ -16,7 +16,7 @@ android {
         applicationId = "com.tvshell.app"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = 1
+        versionCode = 18
         versionName = "1.0.0"
         multiDexEnabled = true
         ndk {
