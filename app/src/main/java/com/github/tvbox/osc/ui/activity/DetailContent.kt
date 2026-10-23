@@ -162,6 +162,10 @@ internal fun DetailContent(
             TmdbCastSection(info.name, info.en, info.year)
         }
 
+        item(key = "douban_comments") {
+            DoubanCommentsSection(info.doubanId, info.name)
+        }
+
         item(key = "tmdb_genres") {
             TmdbGenreSection(info.name, info.en, info.year)
         }
