@@ -1,0 +1,181 @@
+name: Build Release APK
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version / tag (e.g. v1.0.0)'
+        required: true
+        default: 'v1.0.0'
+      prerelease:
+        description: '标记为 Pre-release'
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    working-directory: .
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      release_existed: ${{ steps.existing_release.outputs.existed }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          
+      - name: Set up Python 3.10 (Chaquopy build Python)
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.10'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v6
+
+      - name: Install required SDK/NDK & verify
+        run: |
+          set -euo pipefail
+          SDK_ROOT="${ANDROID_HOME:-$ANDROID_SDK_ROOT}"
+          SDKMANAGER="$(find "$SDK_ROOT/cmdline-tools" -name sdkmanager -type f | head -n1)"
+          [ -n "$SDKMANAGER" ] || { echo "::error::找不到 sdkmanager"; exit 1; }
+
+          sdkmanager() { "$SDKMANAGER" "$@"; }
+
+          echo "== 仓库里可用的 API 37 平台 / NDK 27 =="
+          ALL="$(sdkmanager --list 2>/dev/null)" || true
+          PLATFORM="$(echo "$ALL" | grep -oE 'platforms;android-37(\.[0-9]+)?' | sort -V | tail -n1 || true)"
+          NDK="$(echo "$ALL" | grep -oE 'ndk;27\.2\.12479018' | sort -V | tail -n1 || true)"
+          BUILD_TOOLS="$(echo "$ALL" | grep -oE 'build-tools;3[0-9]+\.[0-9]+\.[0-9]+' | sort -V | tail -n1 || true)"
+          echo "PLATFORM=$PLATFORM  NDK=$NDK  BUILD_TOOLS=$BUILD_TOOLS"
+          [ -n "$PLATFORM" ] || { echo "::error::仓库里找不到 android-37 平台"; exit 1; }
+          [ -n "$NDK" ] || { echo "::error::仓库里找不到 ndk;27.2.12479018"; exit 1; }
+
+          # --licenses 在无待接受许可时会因管道 broken pipe 返回非 0,故忽略其结果
+          yes 2>/dev/null | sdkmanager --licenses > /dev/null 2>&1 || true
+          ARGS=("$PLATFORM" "$NDK")
+          [ -n "$BUILD_TOOLS" ] && ARGS+=("$BUILD_TOOLS")
+          sdkmanager "${ARGS[@]}"
+
+          test -d "$SDK_ROOT/platforms/${PLATFORM#platforms;}" \
+            || { echo "::error::$PLATFORM 未安装"; exit 1; }
+          test -d "$SDK_ROOT/ndk/${NDK#ndk;}" || { echo "::error::$NDK 未安装"; exit 1; }
+          python3 -c "import sys; print('build python:', sys.version)"
+
+      - name: chmod gradlew
+        run: chmod +x gradlew
+
+      - name: Verify signing material
+        run: |
+          test -f .key/app-release.jks || { echo "::error::缺少 .key/app-release.jks"; exit 1; }
+          for k in RELEASE_STORE_FILE RELEASE_KEY_ALIAS RELEASE_STORE_PASSWORD RELEASE_KEY_PASSWORD; do
+            grep -q "^$k=" gradle.properties || { echo "::error::gradle.properties 缺少 $k"; exit 1; }
+          done
+          ls -l .key/app-release.jks
+
+      - name: Build release APK
+        run: ./gradlew assembleRelease --no-daemon --stacktrace
+
+      - name: Rename & verify APK
+        id: apk
+        run: |
+          set -euo pipefail
+          SRC=app/build/outputs/apk/release/AVBox_release.apk
+          test -f "$SRC" || { echo "::error::未找到 $SRC"; exit 1; }
+
+          VERSION='${{ github.event.inputs.version }}'
+          OUT="AVBox_${VERSION}_arm64-v8a.apk"
+          cp "$SRC" "$OUT"
+
+          APKSIGNER="$(find "${ANDROID_HOME:-$ANDROID_SDK_ROOT}/build-tools" -name apksigner -type f | sort -r | head -n1)"
+          echo "apksigner: $APKSIGNER"
+          if [ -n "$APKSIGNER" ]; then
+            "$APKSIGNER" verify --print-certs "$OUT" || { echo "::error::APK 签名校验失败"; exit 1; }
+          fi
+          echo "size: $(du -h "$OUT" | cut -f1)"
+          echo "path=$OUT" >> "$GITHUB_OUTPUT"
+
+      # 同版本重跑时 action-gh-release 会就地更新已有 release（只换 APK），此时不该再打扰订阅者
+      - name: Check if release already exists
+        id: existing_release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          VERSION='${{ github.event.inputs.version }}'
+          if gh release view "$VERSION" >/dev/null 2>&1; then
+            echo "existed=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::$VERSION 已有 release：本次覆盖 APK，不发 Telegram 通知"
+          else
+            echo "existed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Extract changelog for this version
+        id: notes
+        env:
+          VERSION: ${{ github.event.inputs.version }}
+        run: |
+          set -euo pipefail
+          SRC=.github/workflows/changelog.md
+          [ -f "$SRC" ] || { echo "::error::找不到 $SRC"; exit 1; }
+
+          awk -v ver="$VERSION" '
+            /^##[[:space:]]/ {
+              if (found) exit
+              line=$0
+              sub(/^##[[:space:]]+/, "", line)
+              sub(/[[:space:]]+$/, "", line)
+              if (line == ver) { found=1; next }
+              next
+            }
+            found {
+              if ($0 ~ /^---[[:space:]]*$/) exit
+              print
+            }
+          ' "$SRC" > release_body.md
+
+          if [ ! -s release_body.md ]; then
+            echo "::warning::$SRC 中未找到版本 $VERSION 的条目，Release 正文将为空"
+          fi
+
+          sed -i -e :a -e '/^\n*$/{$d;N;ba' -e '}' release_body.md || true
+          echo "::notice::release body 行数: $(wc -l < release_body.md)"
+          echo "----- release_body.md -----"
+          cat release_body.md
+          echo "---------------------------"
+
+      - name: Upload APK to Release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ github.event.inputs.version }}
+          name: ${{ github.event.inputs.version }}
+          files: ${{ steps.apk.outputs.path }}
+          prerelease: ${{ github.event.inputs.prerelease == 'true' }}
+          fail_on_unmatched_files: true
+          generate_release_notes: false
+          body_path: release_body.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # 用 GITHUB_TOKEN 创建的 release 不会触发 notify.yml 的 release 事件，故在此显式调用
+  notify:
+    needs: build
+    if: needs.build.outputs.release_existed != 'true'
+    uses: ./.github/workflows/notify.yml
+    with:
+      tag: ${{ inputs.version }}
+    secrets:
+      TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      TELEGRAM_THREAD_ID: ${{ secrets.TELEGRAM_THREAD_ID }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
