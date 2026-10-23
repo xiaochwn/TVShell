@@ -1,6 +1,8 @@
 package com.github.tvbox.osc.ui.page
 
 import androidx.annotation.StringRes
+import android.content.Context
+import android.net.Uri
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +15,7 @@ import com.github.tvbox.osc.base.App
 import com.github.tvbox.osc.io.removeLocalCopy
 import com.github.tvbox.osc.util.ApiLineSignal
 import com.github.tvbox.osc.util.BootGuard
+import com.github.tvbox.osc.util.DoubanApi
 import com.github.tvbox.osc.util.HawkConfig
 import com.github.tvbox.osc.util.HistoryHelper
 import com.github.tvbox.osc.util.KV
@@ -33,7 +36,7 @@ data class SubscribeSource(val name: String, val url: String)
 
 data class PendingSwitch(val item: SubscribeSource, val vod: Boolean)
 
-enum class ConfigMode { Vod, Tmdb, Live }
+enum class ConfigMode { Vod, Tmdb, Douban, Live }
 
 enum class SubscribeMode { Vod, Live }
 
@@ -78,6 +81,18 @@ data class ConfigTmdbActions(
 
 enum class TmdbTest { None, Api, Image }
 
+@Immutable
+data class ConfigDoubanState(
+    val imported: Boolean,
+    val masked: String,
+)
+
+@Immutable
+data class ConfigDoubanActions(
+    val onCookiePicked: (Uri) -> Unit,
+    val clearCookie: () -> Unit,
+)
+
 internal fun parseSubscribe(value: String): SubscribeSource {
     val index = value.indexOf(SUBSCRIBE_SPLIT)
     return if (index < 0) {
@@ -91,6 +106,8 @@ internal fun parseSubscribe(value: String): SubscribeSource {
 }
 
 internal const val SUBSCRIBE_SPLIT = "\t"
+
+internal const val DOUBAN_COOKIE_FILE_LIMIT = 512 * 1024
 
 internal fun vodSubscribes(): List<SubscribeSource> =
     KV.get(HawkConfig.SUBSCRIBE_LIST, ArrayList<String>()).map { parseSubscribe(it) }
@@ -120,6 +137,7 @@ class ConfigManageViewModel(
         ),
     )
     private val tmdbTesting = MutableStateFlow(TmdbTest.None)
+    private val doubanState = MutableStateFlow(loadDoubanState())
     private val copyCleanupScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
     init {
@@ -253,6 +271,72 @@ class ConfigManageViewModel(
 
     private fun endTmdbTest(test: TmdbTest) {
         if (tmdbTesting.value == test) tmdbTesting.value = TmdbTest.None
+    }
+
+    fun doubanState(): StateFlow<ConfigDoubanState> = doubanState.asStateFlow()
+
+    fun doubanActions(context: Context): ConfigDoubanActions = ConfigDoubanActions(
+        onCookiePicked = { uri -> importDoubanCookie(context.applicationContext, uri) },
+        clearCookie = { clearDoubanCookie() },
+    )
+
+    private fun loadDoubanState(): ConfigDoubanState {
+        val imported = DoubanApi.hasCookie()
+        return ConfigDoubanState(
+            imported = imported,
+            masked = if (imported) DoubanApi.maskedCookie() else "",
+        )
+    }
+
+    private fun importDoubanCookie(context: Context, uri: Uri) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val toast = when (val result = readTextCapped(context, uri, DOUBAN_COOKIE_FILE_LIMIT)) {
+                is CookieFileRead.Ok -> {
+                    val cookie = DoubanApi.extractCookie(result.text)
+                    if (cookie == null) {
+                        str(R.string.douban_import_invalid)
+                    } else {
+                        KV.put(HawkConfig.DOUBAN_COOKIE, cookie)
+                        doubanState.value = loadDoubanState()
+                        str(R.string.douban_import_ok)
+                    }
+                }
+                is CookieFileRead.TooLarge -> str(R.string.douban_import_too_large)
+                is CookieFileRead.Failed -> str(R.string.douban_import_read_fail)
+            }
+            toastEvent.value = toast
+        }
+    }
+
+    private fun clearDoubanCookie() {
+        KV.delete(HawkConfig.DOUBAN_COOKIE)
+        doubanState.value = loadDoubanState()
+        toastEvent.value = str(R.string.douban_cleared)
+    }
+
+    private sealed interface CookieFileRead {
+        data class Ok(val text: String) : CookieFileRead
+        object TooLarge : CookieFileRead
+        object Failed : CookieFileRead
+    }
+
+    private fun readTextCapped(context: Context, uri: Uri, limit: Int): CookieFileRead {
+        return try {
+            val bytes = java.io.ByteArrayOutputStream()
+            context.contentResolver.openInputStream(uri)?.use { input ->
+                val chunk = ByteArray(8192)
+                var length = input.read(chunk)
+                while (length != -1) {
+                    bytes.write(chunk, 0, length)
+                    if (bytes.size() > limit) return CookieFileRead.TooLarge
+                    length = input.read(chunk)
+                }
+            } ?: return CookieFileRead.Failed
+            CookieFileRead.Ok(bytes.toString(Charsets.UTF_8.name()))
+        } catch (e: Exception) {
+            LOG.e("ConfigManageViewModel", e)
+            CookieFileRead.Failed
+        }
     }
 
     private fun str(resId: Int, vararg args: Any): String {

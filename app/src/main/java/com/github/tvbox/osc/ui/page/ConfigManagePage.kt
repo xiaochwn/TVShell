@@ -111,9 +111,11 @@ fun ConfigManageScreen(onNavigateBack: () -> Unit) {
     val toastEvent by vm.toastEvent.collectAsState()
     val tmdbState by vm.tmdbState().collectAsState()
     val tmdbTesting by vm.tmdbTesting().collectAsState()
+    val doubanState by vm.doubanState().collectAsState()
 
     val isVod = mode == ConfigMode.Vod
     val isTmdb = mode == ConfigMode.Tmdb
+    val isDouban = mode == ConfigMode.Douban
     val currentItems = if (isVod) vodItems else liveItems
 
     LaunchedEffect(toastEvent) {
@@ -202,7 +204,7 @@ fun ConfigManageScreen(onNavigateBack: () -> Unit) {
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        if (!isTmdb) {
+                        if (!isTmdb && !isDouban) {
                             if (canSwitchRepo) {
                                 TopBarActionBox(
                                     iconRes = R.drawable.ic_switch_repo,
@@ -245,6 +247,11 @@ fun ConfigManageScreen(onNavigateBack: () -> Unit) {
                         iconPainter = painterResource(R.drawable.ic_config_tmdb),
                     ),
                     SegmentOption(
+                        label = stringResource(R.string.common_douban),
+                        value = ConfigMode.Douban,
+                        iconPainter = painterResource(R.drawable.ic_config_douban),
+                    ),
+                    SegmentOption(
                         label = stringResource(R.string.common_live),
                         value = ConfigMode.Live,
                         iconPainter = painterResource(R.drawable.ic_config_live),
@@ -280,6 +287,11 @@ fun ConfigManageScreen(onNavigateBack: () -> Unit) {
                         state = tmdbState,
                         actions = remember(vm) { vm.tmdbActions() },
                         testing = tmdbTesting,
+                    )
+                } else if (m == ConfigMode.Douban) {
+                    ConfigDoubanScreen(
+                        state = doubanState,
+                        actions = remember(vm, context) { vm.doubanActions(context) },
                     )
                 } else if (mItems.isEmpty()) {
                     Column(modifier = Modifier.fillMaxSize()) {
