@@ -32,6 +32,8 @@ object TmdbPoster {
     private const val MAX_ALIAS_CANDIDATES = 2
     private const val NEGATIVE_MARK = "-"
     private const val NEGATIVE_TTL_MS = 7L * 24 * 60 * 60 * 1000
+    private const val POSITIVE_TTL_MS = 30L * 24 * 60 * 60 * 1000
+    private const val CACHE_ENVELOPE_V1 = "1|"
     private const val BACKOFF_MS = 60_000L
     private const val MAX_MEMORY_ENTRIES = 512
     private const val MAX_CONCURRENT_REQUESTS = 4
@@ -585,15 +587,35 @@ object TmdbPoster {
         if (raw.isEmpty()) emptyList() else raw.split(LIST_SEPARATOR).filter { it.isNotEmpty() }
 
     private fun readCached(key: String): String? {
-        synchronized(memory) { memory[key] }?.let { return it }
+        synchronized(memory) { memory[key] }?.let { return unwrapFresh(key, it) }
         val raw = kvGetString(key) ?: return null
+        val value = unwrapFresh(key, raw) ?: return null
         synchronized(memory) { memory[key] = raw }
-        return raw
+        return value
+    }
+
+    // 正向缓存统一加写入时间戳外壳，30 天过期；旧版本无外壳的存量条目视为有效（惰性迁移）
+    private fun unwrapFresh(key: String, raw: String): String? {
+        if (!raw.startsWith(CACHE_ENVELOPE_V1)) return raw
+        val tsEnd = raw.indexOf('|', CACHE_ENVELOPE_V1.length)
+        if (tsEnd < 0) return null
+        val writtenAt = raw.substring(CACHE_ENVELOPE_V1.length, tsEnd).toLongOrNull() ?: return null
+        if (System.currentTimeMillis() - writtenAt > POSITIVE_TTL_MS) {
+            synchronized(memory) { memory.remove(key) }
+            try {
+                KV.delete(key)
+            } catch (e: Exception) {
+                LOG.e("TmdbPoster", e)
+            }
+            return null
+        }
+        return raw.substring(tsEnd + 1)
     }
 
     private fun writeCached(key: String, value: String) {
-        synchronized(memory) { memory[key] = value }
-        kvPutString(key, value)
+        val wrapped = CACHE_ENVELOPE_V1 + System.currentTimeMillis() + "|" + value
+        synchronized(memory) { memory[key] = wrapped }
+        kvPutString(key, wrapped)
     }
 
     private suspend fun requestShared(key: String, fetch: suspend () -> String?): String? {
