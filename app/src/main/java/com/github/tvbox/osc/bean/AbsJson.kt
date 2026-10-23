@@ -221,6 +221,8 @@ class AbsJson : Serializable {
             video.note = vod_remarks
             video.actor = vod_actor
             video.director = vod_director
+            video.doubanId = vod_douban_id
+            video.doubanScore = vod_douban_score
             val urlBean = Movie.Video.UrlBean()
             val playFrom = vod_play_from
             val playUrl = vod_play_url

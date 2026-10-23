@@ -53,6 +53,12 @@ class VodInfo : Serializable {
     var director: String? = null
 
     @JvmField
+    var doubanId: String? = null
+
+    @JvmField
+    var doubanScore: String? = null
+
+    @JvmField
     var seriesFlags: ArrayList<VodSeriesFlag>? = null
     @JvmField
     var seriesMap: LinkedHashMap<String?, MutableList<VodSeries>>? = null
@@ -95,6 +101,8 @@ class VodInfo : Serializable {
         note = video.note
         actor = video.actor
         director = video.director
+        doubanId = video.doubanId
+        doubanScore = video.doubanScore
         des = video.des
         val infoList = video.urlBean?.infoList
         if (infoList != null && infoList.isNotEmpty()) {

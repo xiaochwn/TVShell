@@ -84,6 +84,12 @@ class Movie : Serializable {
         var director: String? = null
 
         @JvmField
+        var doubanId: String? = null
+
+        @JvmField
+        var doubanScore: String? = null
+
+        @JvmField
         @XStreamAlias("dl")
         var urlBean: UrlBean? = null
 
